@@ -1,0 +1,193 @@
+<html>
+	<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			*{
+                border: 0;
+                margin: 0;
+                padding: 0;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 20px;
+            }
+
+            body {
+                background-color:#999999;
+            }
+
+            #page {
+                max-width: 1000px;
+                margin: 0 auto 0 auto;
+            }
+
+            h1 {
+                text-align: center;
+                font-size: xx-large;
+                width:102%;
+                background-color: #3385ff;
+                position:relative;
+                left: -10px;
+                top: -10px;
+            }
+
+            .Box {
+                background-color: white;
+                display: inline-block;
+                padding: 10px;
+                margin: 10px 0 10px 0;
+                -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.3); 
+                box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.3);
+                width: 100%;
+            }
+
+            input {
+                border: 1px solid black;
+                text-align: center;
+            }
+
+            #IPv4BinClicker {
+                font-size: 21px;
+                font-weight: bold;
+                cursor: pointer;
+
+                -ms-user-select:none;
+                -moz-user-select:none;
+                -webkit-user-select:none;
+                -webkit-touch-callout: none;
+                -khtml-user-select: none;
+                user-select:none;
+            }
+
+            #SubnetTable {
+                background-color: white;
+                border-collapse: collapse;
+                margin: 0 auto 0 auto;
+                border: 1px solid black;
+                width: 100%;
+                table-layout: auto;
+            }
+
+            th, td 
+            {
+                text-align: left;
+                padding: 8px;
+            }
+
+            th {
+                background-color: #3385ff;
+            }
+
+            tr:nth-child(odd)
+            {
+                background-color: #d8d8d8;
+            }
+
+            #IPv4BinInput_Octet0,
+            #IPv4BinInput_Octet1,
+            #IPv4BinInput_Octet2,
+            #IPv4BinInput_Octet3 {
+                width: 95px;
+                margin-top: 15px;
+            }
+
+            #colorSubnet {
+                color:chocolate;
+            }
+
+            #colorHost {
+                color:darkolivegreen;
+            }
+
+            #colorInvalidIP {
+                color:red;
+            }
+        </style>
+        
+        <script src="subnet.js"></script>
+	
+    </head>
+    
+    <body onload="onBodyLoad()">
+        
+		<div id='page'>
+            <div id='InputBox' class='Box'>
+                <h1>IPv4</h1><br>
+
+                <input type="text" id="IPv4DecInput" value="192.168.12.34" oninput="onIPv4Input()"> / <input type="text" id="IPv4NetworkMaskCIDR" value="24" oninput="updateIPv4NetworkMask()" size="2" maxlength="2">
+                <br>
+                <input type="text" id="IPv4BinInput_Octet0" value="00000000" size="8" maxlength="8" oninput="onIPv4InputBinary()"> . 
+                <input type="text" id="IPv4BinInput_Octet1" value="00000000" size="8" maxlength="8" oninput="onIPv4InputBinary()"> . 
+                <input type="text" id="IPv4BinInput_Octet2" value="00000000" size="8" maxlength="8" oninput="onIPv4InputBinary()"> .
+                <input type="text" id="IPv4BinInput_Octet3" value="00000000" size="8" maxlength="8" oninput="onIPv4InputBinary()">
+            
+                <div id='IPv4BinClicker'>
+                    
+                    <span id='Bit0'  onclick="onclickIPv4InputBitArrayElement( 0)">0</span>
+                    <span id='Bit1'  onclick="onclickIPv4InputBitArrayElement( 1)">0</span>
+                    <span id='Bit2'  onclick="onclickIPv4InputBitArrayElement( 2)">0</span>
+                    <span id='Bit3'  onclick="onclickIPv4InputBitArrayElement( 3)">0</span> '
+                    <span id='Bit4'  onclick="onclickIPv4InputBitArrayElement( 4)">0</span>
+                    <span id='Bit5'  onclick="onclickIPv4InputBitArrayElement( 5)">0</span>
+                    <span id='Bit6'  onclick="onclickIPv4InputBitArrayElement( 6)">0</span>
+                    <span id='Bit7'  onclick="onclickIPv4InputBitArrayElement( 7)">0</span> .
+                    <span id='Bit8'  onclick="onclickIPv4InputBitArrayElement( 8)">0</span>
+                    <span id='Bit9'  onclick="onclickIPv4InputBitArrayElement( 9)">0</span>
+                    <span id='Bit10' onclick="onclickIPv4InputBitArrayElement(10)">0</span>
+                    <span id='Bit11' onclick="onclickIPv4InputBitArrayElement(11)">0</span> '
+                    <span id='Bit12' onclick="onclickIPv4InputBitArrayElement(12)">0</span>
+                    <span id='Bit13' onclick="onclickIPv4InputBitArrayElement(13)">0</span>
+                    <span id='Bit14' onclick="onclickIPv4InputBitArrayElement(14)">0</span>
+                    <span id='Bit15' onclick="onclickIPv4InputBitArrayElement(15)">0</span> .
+                    <span id='Bit16' onclick="onclickIPv4InputBitArrayElement(16)">0</span>
+                    <span id='Bit17' onclick="onclickIPv4InputBitArrayElement(17)">0</span>
+                    <span id='Bit18' onclick="onclickIPv4InputBitArrayElement(18)">0</span>
+                    <span id='Bit19' onclick="onclickIPv4InputBitArrayElement(19)">0</span> '
+                    <span id='Bit20' onclick="onclickIPv4InputBitArrayElement(20)">0</span>
+                    <span id='Bit21' onclick="onclickIPv4InputBitArrayElement(21)">0</span>
+                    <span id='Bit22' onclick="onclickIPv4InputBitArrayElement(22)">0</span>
+                    <span id='Bit23' onclick="onclickIPv4InputBitArrayElement(23)">0</span> .
+                    <span id='Bit24' onclick="onclickIPv4InputBitArrayElement(24)">0</span>
+                    <span id='Bit25' onclick="onclickIPv4InputBitArrayElement(25)">0</span>
+                    <span id='Bit26' onclick="onclickIPv4InputBitArrayElement(26)">0</span>
+                    <span id='Bit27' onclick="onclickIPv4InputBitArrayElement(27)">0</span> '
+                    <span id='Bit28' onclick="onclickIPv4InputBitArrayElement(28)">0</span>
+                    <span id='Bit29' onclick="onclickIPv4InputBitArrayElement(29)">0</span>
+                    <span id='Bit30' onclick="onclickIPv4InputBitArrayElement(30)">0</span>
+                    <span id='Bit31' onclick="onclickIPv4InputBitArrayElement(31)">0</span>                 
+                </div>
+
+            </div>
+
+            <div id='IpInfoBox' class='Box'>
+                Network IP: <span id='NetworkAddress'></span><br>
+                <br>
+                Start IP: <span id='NetworkStartAddress'></span><br>
+                End IP:   <span id='NetworkEndAddress'></span><br>
+                <br>
+                Broadcast IP: <span id='NetworkBroadcastAddress'></span><br>
+                <br>
+                <br>
+                Network bits: <span id='NetworkBits'></span><br>
+                Host bits: <span id='HostBits'></span><br>
+                Maximal number of clients: <span id='NetworkMaxClientNbr'></span><br>
+            </div>
+
+            <div id='SubnetBox' class='Box'>
+                Subnet Bits: <input type="text" id="IPv4SubnetBits" value="0" oninput="updateIPv4SubnetBits()" size="2" maxlength="2"><br>
+
+                Number of subnetworks: <span id='NumberOfSubnets'></span><br>
+                Hosts per subnetwork:  <span id='HostsPerSubnet'></span><br>
+                <br>
+                <table id='SubnetTable'>
+                    <tr>
+                        <th>Id</th>
+                        <th>Network address</th>
+                        <th>IP range</th>
+                        <th>Broadcast</th>
+                    </tr>
+                </table>
+            </div>
+		</div>
+		
+    </body>
+    
+</html>
